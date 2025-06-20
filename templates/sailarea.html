@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ORC Mainsail Area Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>ORC Mainsail Area Calculator</h1>
+
+    <p>This tool uses the official ORC formula to estimate the mainsail area:</p>
+
+    <blockquote>
+        <strong>Area = (P ÷ 8) × (E + 2·MQW + 2·MHW + 1.5·MTW + MUW + 0.5·MHB)</strong><br>
+        where:<br>
+        - <strong>P</strong> = luff length (mast height)<br>
+        - <strong>E</strong> = foot length (boom length)<br>
+        - <strong>MQW</strong> = ¼ height sail width<br>
+        - <strong>MHW</strong> = ½ height sail width<br>
+        - <strong>MTW</strong> = ¾ height sail width<br>
+        - <strong>MUW</strong> = ⁷⁄₈ height sail width<br>
+        - <strong>MHB</strong> = headboard width
+    </blockquote>
+
+    <form method="post">
+        <label title="P: Distance from boom to top of sail (mast height).">P (Luff length in meters):</label><br>
+        <input type="number" step="0.01" name="P" required><br><br>
+
+        <label title="E: Length of the boom from mast to clew.">E (Foot length in meters):</label><br>
+        <input type="number" step="0.01" name="E" required><br><br>
+
+        <label title="MQW: Sail width at ¼ height up the leech.">MQW (¼ width in meters):</label><br>
+        <input type="number" step="0.01" name="MQW" required><br><br>
+
+        <label title="MHW: Sail width at ½ height up the leech.">MHW (½ width in meters):</label><br>
+        <input type="number" step="0.01" name="MHW" required><br><br>
+
+        <label title="MTW: Sail width at ¾ height up the leech.">MTW (¾ width in meters):</label><br>
+        <input type="number" step="0.01" name="MTW" required><br><br>
+
+        <label title="MUW: Sail width at ⁷⁄₈ height up the leech.">MUW (⁷⁄₈ width in meters):</label><br>
+        <input type="number" step="0.01" name="MUW" required><br><br>
+
+        <label title="MHB: Width of the sail at the very top (headboard).">MHB (Headboard width in meters):</label><br>
+        <input type="number" step="0.01" name="MHB" required><br><br>
+
+        <button type="submit">Calculate Area</button>
+    </form>
+
+    {% if area is not none %}
+        <h2>Calculated Area: {{ area }} m²</h2>
+    {% endif %}
+
+    <p><a href="/">← Back to Home</a></p>
+</body>
+</html>

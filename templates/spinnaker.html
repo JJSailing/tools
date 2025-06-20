@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spinnaker Area Calculator (ORC)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>ORC Spinnaker Area Calculator</h1>
+
+    <p>This calculator estimates the area of a spinnaker or gennaker based on the <strong>ORC measurement rule</strong>:</p>
+
+    <blockquote>
+        <strong>Area = ASL × (SFL + 4 × SHW) ÷ 6</strong><br>
+        where:<br>
+        - <strong>ASL</strong> = (SLU + SLE) ÷ 2<br>
+        - <strong>SLU</strong> = length of luff (front edge)<br>
+        - <strong>SLE</strong> = length of leech (back edge)<br>
+        - <strong>SHW</strong> = sail half-width, measured at 50% height<br>
+        - <strong>SFL</strong> = foot length (bottom of sail)
+    </blockquote>
+
+    <form method="post">
+        <label title="SLU: Length of the luff (front edge) from tack to head.">SLU (Luff) in meters:</label><br>
+        <input type="number" step="0.01" name="SLU" required><br><br>
+
+        <label title="SLE: Length of the leech (back edge) from clew to head.">SLE (Leech) in meters:</label><br>
+        <input type="number" step="0.01" name="SLE" required><br><br>
+
+        <label title="SHW: Sail width at 50% height from foot to head.">SHW (Half-Width) in meters:</label><br>
+        <input type="number" step="0.01" name="SHW" required><br><br>
+
+        <label title="SFL: Length of the sail foot (bottom edge).">SFL (Foot) in meters:</label><br>
+        <input type="number" step="0.01" name="SFL" required><br><br>
+
+        <button type="submit">Calculate Area</button>
+    </form>
+
+    {% if area is not none %}
+        <h2>Calculated Area: {{ area }} m²</h2>
+    {% endif %}
+
+    <p><a href="/">← Back to Home</a></p>
+</body>
+</html>
