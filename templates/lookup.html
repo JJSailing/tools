@@ -1,0 +1,15 @@
+<form method="post">
+  <label>Enter Sail Number or Boat Name:</label><br>
+  <input type="text" name="query" required value="{{ query }}">
+  <button type="submit">Search</button>
+</form>
+
+{% if result %}
+  <h2>Certificate Found:</h2>
+  <p><strong>Boat Name:</strong> {{ result.YachtName }}</p>
+  <p><strong>Sail No:</strong> {{ result.SailNo }}</p>
+  <p><strong>Ref No:</strong> {{ result.RefNo }}</p>
+  <p><a href="{{ result.FileURL }}" target="_blank">View Certificate PDF</a></p>
+{% elif request.method == 'POST' %}
+  <p>No certificate found for "{{ query }}".</p>
+{% endif %}
